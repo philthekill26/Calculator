@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Calculator</title>
+  <style>
+    .calculator {
+      width: 200px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .calculator input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .calculator button {
+      width: 40px;
+      height: 40px;
+      margin: 2px;
+      font-size: 16px;
+      color: #fff;
+      background-color: rgb(86, 145, 236);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .calculator button.operator {
+      background-color: rgb(248, 148, 6);
+    }
+
+    .calculator button.clear {
+      background-color: rgb(204, 59, 59);
+    }
+
+    .calculator button.equal {
+      background-color: rgb(46, 204, 113);
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="result" readonly>
+    <button class="clear" onclick="clearInput()">C</button>
+    <br>
+    <button onclick="appendToInput('7')">7</button>
+    <button onclick="appendToInput('8')">8</button>
+    <button onclick="appendToInput('9')">9</button>
+    <button class="operator" onclick="calculate('/')">/</button>
+    <br>
+    <button onclick="appendToInput('4')">4</button>
+    <button onclick="appendToInput('5')">5</button>
+    <button onclick="appendToInput('6')">6</button>
+    <button class="operator" onclick="calculate('*')">*</button>
+    <br>
+    <button onclick="appendToInput('1')">1</button>
+    <button onclick="appendToInput('2')">2</button>
+    <button onclick="appendToInput('3')">3</button>
+    <button class="operator" onclick="calculate('-')">-</button>
+    <br>
+    <button onclick="appendToInput('0')">0</button>
+    <button class="operator" onclick="calculate('+')">+</button>
+    <button class="equal" onclick="calculate('=')">=</button>
+  </div>
+
+  <script>
+    function appendToInput(value) {
+      document.getElementById('result').value += value;
+    }
+
+    function calculate(operator) {
+      var input = document.getElementById('result').value;
+      var result = eval(input);
+
+      if (operator === '=') {
+        document.getElementById('result').value = result;
+      } else {
+        document.getElementById('result').value = result + operator;
+      }
+    }
+
+    function clearInput() {
+      document.getElementById('result').value = '';
+    }
+  </script>
+</body>
+</html>
